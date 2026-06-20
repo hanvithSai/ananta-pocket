@@ -56,6 +56,80 @@ UI Updates
 
 ---
 
+# Frontend Architecture
+
+```text
+frontend/
+│
+├── components/
+│   ├── Navbar.jsx
+│   └── ProductCard.jsx
+│
+├── pages/
+│   ├── HomePage.jsx
+│   └── CreatePage.jsx
+│
+├── store/
+│   └── product.js
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+# State Management Architecture
+```text
+
+                Zustand Store
+                       │
+      ┌────────────────┼───────────────┐
+      │                │               │
+      ▼                ▼               ▼
+ CreatePage      HomePage       ProductCard
+
+      │                │               │
+      └──────── API Requests ──────────┘
+                       │
+                       ▼
+                 Express API
+                       │
+                       ▼
+                   MongoDB
+```
+---
+
+# Data Flow
+
+Create Product
+
+```text
+User
+ │
+ ▼
+CreatePage
+ │
+ ▼
+createProduct()
+ │
+ ▼
+Zustand Store
+ │
+ ▼
+POST /api/products
+ │
+ ▼
+MongoDB
+ │
+ ▼
+Store Updated
+ │
+ ▼
+UI Re-render
+
+```
+---
+
 # Backend Architecture
 
 ```text

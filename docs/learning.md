@@ -509,3 +509,400 @@ Common Responses:
 
 * `500 Internal Server Error` → Database connection failure
 * `503 Service Unavailable` → Database temporarily unavailable
+
+---
+
+# React State Management
+
+## What is State?
+
+State is data that can change over time and affects what is displayed on the screen.
+
+Example:
+
+```javascript
+const [count, setCount] = useState(0);
+```
+
+State determines:
+
+* What users see
+* What users can interact with
+* How UI changes after actions
+
+---
+
+## Local State
+
+Local state belongs to a single component.
+
+Example:
+
+```javascript
+const [product, setProduct] = useState({
+  name: "",
+  price: "",
+  image: ""
+});
+```
+
+Used For:
+
+* Form Inputs
+* Toggle Buttons
+* Modal Visibility
+* Temporary UI Data
+
+Advantages:
+
+* Simple
+* Easy to understand
+
+Limitations:
+
+* Cannot easily share across multiple components
+
+---
+
+## Prop Drilling
+
+Prop drilling occurs when data must pass through multiple components before reaching the component that needs it.
+
+Example:
+
+```text
+App
+│
+├── Navbar
+│
+└── HomePage
+     │
+     └── ProductCard
+```
+
+Problem:
+
+If ProductCard needs data from App:
+
+```text
+App
+ ↓
+HomePage
+ ↓
+ProductCard
+```
+
+Data must travel through intermediate components.
+
+Issues:
+
+* Hard to maintain
+* Difficult to scale
+* Unnecessary re-renders
+
+---
+
+# Zustand State Management
+
+## What is Zustand?
+
+Zustand is a lightweight state management library for React.
+
+Installation:
+
+```bash
+npm install zustand
+```
+
+Purpose:
+
+* Create Global State
+* Share Data Across Components
+* Reduce Prop Drilling
+* Centralize Business Logic
+
+---
+
+## Why Zustand?
+
+Without Zustand:
+
+```text
+App
+ ↓
+HomePage
+ ↓
+ProductCard
+```
+
+Data must be passed manually.
+
+With Zustand:
+
+```text
+Global Store
+     │
+ ┌───┼────┐
+ │   │    │
+ ▼   ▼    ▼
+App Navbar ProductCard
+```
+
+Any component can access state directly.
+
+---
+
+## Zustand Store Structure
+
+Example:
+
+```javascript
+import { create } from "zustand";
+
+export const useProductStore = create((set) => ({
+  products: [],
+
+  setProducts: (products) =>
+    set({ products }),
+}));
+```
+
+Components can access state:
+
+```javascript
+const { products } = useProductStore();
+```
+
+---
+
+## Why Store API Logic Inside Zustand?
+
+Instead of:
+
+```javascript
+HomePage.jsx
+CreatePage.jsx
+Navbar.jsx
+```
+
+all calling APIs separately,
+
+we centralize business logic:
+
+```javascript
+store/product.js
+```
+
+Benefits:
+
+* Single source of truth
+* Reusable functions
+* Cleaner components
+* Easier debugging
+
+---
+
+## Global Store Responsibilities
+
+Current Store Functions:
+
+### fetchProducts()
+
+Gets all products from backend.
+
+### createProduct()
+
+Creates product in database.
+
+### updateProduct()
+
+Updates product.
+
+### deleteProduct()
+
+Deletes product.
+
+---
+
+## Optimistic UI Updates
+
+After a successful API call:
+
+```javascript
+set((state) => ({
+  products: [...state.products, data]
+}));
+```
+
+UI updates immediately.
+
+Benefits:
+
+* Faster user experience
+* No page refresh needed
+
+---
+
+## State Flow
+
+```text
+User Action
+     │
+     ▼
+Component
+     │
+     ▼
+Zustand Store
+     │
+     ▼
+Backend API
+     │
+     ▼
+MongoDB
+     │
+     ▼
+Store Updated
+     │
+     ▼
+UI Re-rendered
+```
+
+---
+
+# React Router
+
+## What is React Router?
+
+React Router enables navigation between pages without refreshing the browser.
+
+Installation:
+
+```bash
+npm install react-router-dom
+```
+
+Example:
+
+```javascript
+<Route path="/" element={<HomePage />} />
+
+<Route path="/create" element={<CreatePage />} />
+```
+
+Benefits:
+
+* Single Page Application (SPA)
+* Faster navigation
+* Better user experience
+
+---
+
+# Chakra UI
+
+## What is Chakra UI?
+
+Chakra UI is a React component library.
+
+Examples:
+
+* Button
+* Input
+* Container
+* Modal
+* Flex
+* Grid
+
+Benefits:
+
+* Faster development
+* Accessibility support
+* Responsive design
+* Consistent UI
+
+---
+
+# useColorMode
+
+Used for Light Mode / Dark Mode.
+
+Example:
+
+```javascript
+const { colorMode, toggleColorMode } =
+useColorMode();
+```
+
+Purpose:
+
+* Theme switching
+* Better user experience
+* Accessibility
+
+---
+
+# Vite Proxy
+
+Problem:
+
+Frontend runs on:
+
+```text
+localhost:5173
+```
+
+Backend runs on:
+
+```text
+localhost:5000
+```
+
+Direct requests may cause CORS issues.
+
+Solution:
+
+```javascript
+server: {
+  proxy: {
+    "/api": {
+      target: "http://localhost:5000"
+    }
+  }
+}
+```
+
+Now:
+
+```javascript
+fetch("/api/products")
+```
+
+automatically becomes:
+
+```javascript
+fetch("http://localhost:5000/api/products")
+```
+
+---
+
+# Modal
+
+A modal is a temporary popup interface.
+
+Used For:
+
+* Editing products
+* Confirmations
+* User interactions
+
+Example:
+
+```text
+Update Product
+ ┌─────────────┐
+ │ Name        │
+ │ Price       │
+ │ Image       │
+ │             │
+ │ Update      │
+ └─────────────┘
+```

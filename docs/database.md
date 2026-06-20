@@ -189,3 +189,24 @@ await Product.findByIdAndUpdate(id,data);
 await Product.findByIdAndDelete(id);
 ```
 
+# Data Access Layer
+
+Frontend never communicates directly with MongoDB.
+
+Architecture:
+
+```text
+React
+ │
+ ▼
+Zustand Store
+ │
+ ▼
+Express API
+ │
+ ▼
+Mongoose
+ │
+ ▼
+MongoDB
+```

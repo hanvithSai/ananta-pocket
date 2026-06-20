@@ -99,6 +99,104 @@ MVC Pattern
 
 ---
 
+## Decision 5: Zustand
+
+### Problem
+
+Need shared state between multiple React components.
+
+### Alternatives
+
+- useState
+- Context API
+- Redux Toolkit
+- Zustand
+
+### Selected
+
+Zustand
+
+### Reason
+
+- Minimal boilerplate
+- Easy learning curve
+- Better developer experience
+- Lightweight
+
+### Tradeoffs
+
+- Smaller ecosystem than Redux
+- Fewer enterprise integrations
+
+---
+
+## Decision 6: Chakra UI
+
+### Problem
+
+Need responsive UI components.
+
+### Alternatives
+
+- Tailwind CSS
+- Material UI
+- Chakra UI
+
+### Selected
+
+Chakra UI
+
+### Reason
+
+- Fast development
+- Built-in accessibility
+- Responsive props
+- Dark mode support
+
+---
+
+## Decision 7: React Router
+
+### Problem
+
+Need multiple pages.
+
+### Selected
+
+React Router DOM
+
+### Benefits
+
+- SPA navigation
+- Client-side routing
+- Better UX
+
+---
+
+## Decision 8: Optimistic UI Updates
+
+### Problem
+
+UI should immediately reflect changes.
+
+### Selected
+
+Local Store Updates
+
+### Example
+
+Create Product:
+
+1. API Request Success
+2. Zustand Store Updated
+3. UI Automatically Updates
+
+Benefit:
+
+No manual refresh required.
+
+---
+
 # Error Handling Strategy
 
 ## Validation Errors
