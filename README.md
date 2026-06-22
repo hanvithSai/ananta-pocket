@@ -1,23 +1,63 @@
-
 # Ananta-Pocket
 
-A Full Stack application built using MongoDB, Express.js, React.js, and Node.js **[MERN]**.
+A Full Stack MERN application for product management, built using MongoDB, Express.js, React.js, Node.js, Zustand, Chakra UI, and deployed on Render.
+
+---
+
+## Live Demo
+
+**Application URL**
+
+```text
+https://ananta-pocket.onrender.com
+```
+
+---
 
 ## Overview
 
-Ananta-Pocket is a modern web application designed to manage and organize product data through a responsive and scalable architecture. The project follows industry-standard backend and frontend separation, RESTful API design principles, and MongoDB-based document storage.
+Ananta-Pocket is a modern full-stack CRUD application designed to manage product data through a scalable MERN architecture.
 
-The application demonstrates:
+The project demonstrates industry-standard software engineering practices including:
 
-* Full CRUD Operations
 * REST API Development
 * MongoDB Atlas Integration
-* React Frontend Development
-* Express Backend Architecture
-* Mongoose Data Modeling
-* Environment Variable Management
-* Modular Project Structure
-* Deployment Ready Configuration
+* React SPA Architecture
+* Zustand State Management
+* Chakra UI Component System
+* Responsive Design
+* Environment-Based Configuration
+* Production Deployment
+* Single-Service Hosting Architecture
+
+---
+
+## Features
+
+### Product Features
+
+* Create Products
+* View Products
+* Update Products
+* Delete Products
+
+### User Experience
+
+* Responsive Layout
+* Dark Mode / Light Mode
+* Toast Notifications
+* Real-Time UI Updates
+* Modal-Based Editing
+
+### Engineering Features
+
+* RESTful API Design
+* Zustand Global State Management
+* MongoDB Atlas Database
+* MVC Backend Architecture
+* Environment Variables
+* Production Build Pipeline
+* Single Deployment Architecture
 
 ---
 
@@ -27,9 +67,10 @@ The application demonstrates:
 
 * React.js
 * Vite
-* Axios
-* React Router
-* CSS / Tailwind CSS
+* React Router DOM
+* Zustand
+* Chakra UI
+* React Icons
 
 ### Backend
 
@@ -39,31 +80,59 @@ The application demonstrates:
 * Mongoose
 * dotenv
 * Nodemon
+* Cross-Env
+
+### Deployment
+
+* Render
+* GitHub
+* MongoDB Atlas
 
 ---
 
-## Features
+## Architecture
 
-### Product Functions
+```text
+User
+ │
+ ▼
+React Frontend
+ │
+ ▼
+Zustand Store
+ │
+ ▼
+Express REST API
+ │
+ ▼
+Mongoose ODM
+ │
+ ▼
+MongoDB Atlas
+```
 
-* Create Product
-* View Products
-* Update Product
-* Delete Product
+---
 
-### User Experience
+## Production Architecture
 
-* Responsive Design
-* Light/Dark Mode
-* Real-time UI Updates
+```text
+User
+ │
+ ▼
+https://ananta-pocket.onrender.com
+ │
+ ▼
+Express Server
+ │
+ ├── REST API
+ │
+ └── React Static Assets
+ │
+ ▼
+MongoDB Atlas
+```
 
-### Backend Features
-
-* RESTful APIs
-* Input Validation
-* Error Handling
-* MongoDB Integration
-* Modular Routing
+The application uses a Single-Service Deployment model where Express serves both the frontend and backend under the same domain.
 
 ---
 
@@ -74,42 +143,55 @@ Ananta-Pocket
 │
 ├── frontend
 │   ├── src
-│   ├── pages
 │   ├── components
-│   └── store
+│   ├── pages
+│   ├── store
+│   └── assets
 │
 ├── backend
 │   ├── config
 │   ├── models
-│   ├── routes
 │   ├── controllers
+│   ├── routes
 │   └── server.js
 │
 ├── docs
+│   ├── architecture.md
 │   ├── engineering.md
 │   ├── learning.md
-│   ├── architecture.md
 │   ├── api-reference.md
 │   └── database.md
 │
-├── README.md
 ├── .env.example
-├── .gitignore
-├── package-lock.json
-└── package.json
+├── package.json
+└── README.md
 ```
 
 ---
 
-## System Flow
+## Application Flow
 
-1. User performs an action from React UI.
-2. Request is sent to Express API.
-3. Controller processes request.
-4. Mongoose communicates with MongoDB.
-5. Database returns response.
-6. API sends response back.
-7. React updates UI.
+```text
+User Action
+      │
+      ▼
+React Component
+      │
+      ▼
+Zustand Store
+      │
+      ▼
+Express API
+      │
+      ▼
+MongoDB Atlas
+      │
+      ▼
+Response Returned
+      │
+      ▼
+UI Re-rendered
+```
 
 ---
 
@@ -130,7 +212,20 @@ Ananta-Pocket
 
 ---
 
+## API Endpoints
+
+| Method | Endpoint          | Description      |
+| ------ | ----------------- | ---------------- |
+| GET    | /api/products     | Get All Products |
+| POST   | /api/products     | Create Product   |
+| PUT    | /api/products/:id | Update Product   |
+| DELETE | /api/products/:id | Delete Product   |
+
+---
+
 ## Environment Variables
+
+Create a `.env` file:
 
 ```env
 MONGO_URI=<mongodb_connection_string>
@@ -139,27 +234,58 @@ PORT=5000
 
 ---
 
-## API Endpoints
+## Installation
 
-| Method | Endpoint          | Description      |
-| ------ | ----------------- | ---------------- |
-| GET    | /api/products     | Get all products |
-| POST   | /api/products     | Create product   |
-| PUT    | /api/products/:id | Update product   |
-| DELETE | /api/products/:id | Delete product   |
+### Clone Repository
+
+```bash
+git clone https://github.com/hanvithSai/ananta-pocket.git
+cd Ananta-Pocket
+```
+
+### Install Dependencies
+
+```bash
+npm install
+npm install --prefix frontend
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
 
 ---
 
-## Future Enhancements
+## Production Commands
 
-* Authentication & Authorization
-* JWT Security
-* Image Upload Storage
-* Search & Filtering
-* Pagination
-* Wishlist
-* Payments
-* Admin Dashboard
+### Build Application
+
+```bash
+npm run build
+```
+
+### Start Production Server
+
+```bash
+npm start
+```
+
+---
+
+## Documentation
+
+Detailed project documentation is available in:
+
+```text
+docs/
+├── architecture.md
+├── engineering.md
+├── learning.md
+├── api-reference.md
+└── database.md
+```
 
 ---
 
@@ -167,14 +293,33 @@ PORT=5000
 
 This project helped understand:
 
-* REST API Design
-* MongoDB Data Modeling
-* Express Routing
-* Mongoose ODM
-* Frontend-Backend Communication
+* MERN Stack Development
+* React Routing
+* Zustand State Management
 * CRUD Operations
+* REST APIs
+* MongoDB Atlas
+* Mongoose ODM
+* Chakra UI
 * Production Deployment
-* Full Stack Development Workflow
+* Render Hosting
+* Git & GitHub Workflow
+* Environment Variables
+* Build Pipelines
+* Single-Service Architecture
 
-```
-```
+---
+
+## Future Enhancements
+
+* Authentication & Authorization
+* JWT Security
+* Cloudinary Image Uploads
+* Search & Filtering
+* Pagination
+* Product Categories
+* Wishlist System
+* Admin Dashboard
+* Docker Containerization
+* CI/CD Pipeline
+

@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import { Box, Button, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
@@ -12,8 +12,7 @@ function App() {
       bg={useColorModeValue("gray.300", "gray.900")}
       py={4}
       mb={8}
-    >
-      <Button>Hello World</Button>
+    >      
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
